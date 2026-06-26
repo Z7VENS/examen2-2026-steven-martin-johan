@@ -15,5 +15,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 // Material endpoints
+Route::get('/materiales', [MaterialController::class, 'index']);
 Route::post('/materiales', [MaterialController::class, 'store']);
 Route::put('/materiales/{codigo}', [MaterialController::class, 'update']);
