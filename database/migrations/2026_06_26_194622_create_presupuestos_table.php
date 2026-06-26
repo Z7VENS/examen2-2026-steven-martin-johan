@@ -12,17 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('presupuestos', function (Blueprint $table) {
-            $table->id();
-            $table->integer('codigo_presupuesto')->unique();
-            $table->string('nombre_presupuesto');
+            $table->id('codigoPresupuesto');
+            $table->string('nombrePresupuesto');
 
             // Unidad (1) --tiene--> (1..*) Presupuesto : cada Presupuesto pertenece a una Unidad.
-            $table->foreignId('unidad_id')
-                ->nullable()
-                ->constrained('unidades')
-                ->nullOnDelete();
+            // Tipo unsignedInteger para coincidir con unidades.idUnidad (increments / int).
+            $table->unsignedInteger('idUnidad');
 
             $table->timestamps();
+
+            $table->foreign('idUnidad')
+                ->references('idUnidad')
+                ->on('unidades')
+                ->onDelete('cascade');
         });
     }
 
