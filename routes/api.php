@@ -16,3 +16,4 @@ Route::get('/user', function (Request $request) {
 
 // Material endpoints
 Route::post('/materiales', [MaterialController::class, 'store']);
+Route::put('/materiales/{codigo}', [MaterialController::class, 'update']);
